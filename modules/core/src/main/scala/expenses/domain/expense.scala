@@ -1,6 +1,7 @@
 package expenses.domain
 
 import java.time.LocalDate
+import java.util.UUID
 
 import eu.timepit.refined.types.string.NonEmptyString
 import io.estatico.newtype.macros.newtype
@@ -14,10 +15,11 @@ object expense {
   // TODO: Maybe refine debtors to enforce payer is not included
 
   case class Expense(
+      uuid: UUID,
       payer: Person,
       amount: Money,
       date: LocalDate,
-      debtors: Set[Person],
+      debtors: List[Person],
       reference: Reference,
       note: Option[Note]
   )
